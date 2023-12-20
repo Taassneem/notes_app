@@ -1,37 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/widgets/custom_appbar.dart';
+import 'package:notes_app/widgets/custom_bottom_sheet.dart';
 import 'package:notes_app/widgets/note_list_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
-
+  static String id = 'HomeView';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Notes',
-            style: TextStyle(fontSize: 24),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Container(
-                width: 45,
-                height: 45,
-                decoration: BoxDecoration(
-                  color: Colors.grey[900],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.search,
-                  ),
-                ),
-              ),
-            )
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            CustomAppBar(title: 'Notes', icon: Icons.search),
+            Expanded(child: NoteListView()),
           ],
         ),
-        body: const NoteListView());
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              context: context,
+              builder: (context) => const ModelBottomSheet());
+        },
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }
