@@ -17,32 +17,51 @@ class NoteCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(left: 10, top: 16, bottom: 16),
+            padding: const EdgeInsets.only(
+              left: 10,
+              top: 16,
+              bottom: 16,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ListTile(
                   title: const Text(
                     'Flutter Tips',
-                    style: TextStyle(fontSize: 30, color: Colors.black),
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black,
+                    ),
                   ),
                   subtitle: const Padding(
-                    padding: EdgeInsets.only(top: 10.0, bottom: 10),
+                    padding: EdgeInsets.only(
+                      top: 10.0,
+                      bottom: 10,
+                    ),
                     child: Text(
                       'build ypur note here for first time with tasneem radwan',
-                      style: TextStyle(fontSize: 16, color: Colors.black38),
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black38,
+                      ),
                     ),
                   ),
                   trailing: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(FontAwesomeIcons.trash,
-                          size: 24, color: Colors.black)),
+                    onPressed: () {},
+                    icon: const Icon(
+                      FontAwesomeIcons.trash,
+                      size: 24,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(right: 24.0),
                   child: Text(
                     'update at 16:00',
-                    style: TextStyle(color: Colors.black38),
+                    style: TextStyle(
+                      color: Colors.black38,
+                    ),
                   ),
                 ),
               ],
