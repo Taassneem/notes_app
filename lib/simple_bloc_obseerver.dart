@@ -15,7 +15,7 @@ class SimpleBlocObserver implements BlocObserver {
 
   @override
   void onCreate(BlocBase bloc) {
-log('Create = $bloc');
+    log('Create = $bloc');
   }
 
   @override

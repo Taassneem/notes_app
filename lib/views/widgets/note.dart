@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes_app/cubits/notes_cubit/notes_cubit.dart';
+import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
 
 class NoteCard extends StatelessWidget {
-  const NoteCard({super.key, required this.color});
-  final Color color;
+  const NoteCard({super.key, required this.noteModel});
+  final NoteModel noteModel;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: GestureDetector(
-        onTap: () => Navigator.pushNamed(context, EditNoteView.id),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EditNoteView(noteModel: noteModel),
+          ),
+        ),
         child: Container(
           decoration: BoxDecoration(
-            color: color,
+            color: Color(noteModel.color),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Padding(
@@ -26,28 +35,31 @@ class NoteCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 ListTile(
-                  title: const Text(
-                    'Flutter Tips',
-                    style: TextStyle(
+                  title: Text(
+                    noteModel.title,
+                    style: const TextStyle(
                       fontSize: 30,
                       color: Colors.black,
                     ),
                   ),
-                  subtitle: const Padding(
-                    padding: EdgeInsets.only(
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(
                       top: 10.0,
                       bottom: 10,
                     ),
                     child: Text(
-                      'build ypur note here for first time with tasneem radwan',
-                      style: TextStyle(
+                      noteModel.subTitle,
+                      style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black38,
                       ),
                     ),
                   ),
                   trailing: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      noteModel.delete();
+                      BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                    },
                     icon: const Icon(
                       FontAwesomeIcons.trash,
                       size: 24,
@@ -55,11 +67,11 @@ class NoteCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(right: 24.0),
+                Padding(
+                  padding: const EdgeInsets.only(right: 24.0),
                   child: Text(
-                    'update at 16:00',
-                    style: TextStyle(
+                    noteModel.date,
+                    style: const TextStyle(
                       color: Colors.black38,
                     ),
                   ),

@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            CustomAppBar(title: 'Notes', icon: Icons.search),
+            CustomAppBar(title: 'Notes', icon: Icon(Icons.search)),
             Expanded(child: NoteListView()),
           ],
         ),
