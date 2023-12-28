@@ -13,9 +13,7 @@ class ColorListView extends StatefulWidget {
 }
 
 class _ColorListViewState extends State<ColorListView> {
-
-
-  int currentSelected = 0;
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +25,14 @@ class _ColorListViewState extends State<ColorListView> {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              currentSelected = index;
+              currentIndex = index;
               BlocProvider.of<AddNoteCubit>(context).color = kColors[index];
               setState(() {});
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               child: ColorItem(
-                isSelected: currentSelected == index,
+                isSelected: currentIndex == index,
                 color: kColors[index],
               ),
             ),
